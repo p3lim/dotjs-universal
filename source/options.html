@@ -12,14 +12,17 @@
 
 			h2 {
 				font-family: 'Trebuchet MS', sans-serif;
-				color: #444
+				color: #444;
 				font-size: 1.3em;
 			}
 		</style>
 	</head>
 	<body>
-		<h2>Link to scripts folder:</h2><br/>
-		<input id='link' type='text' style='width:400px'/>
+		<h2>Path to scripts folder:</h2>
+		Windows: <input id='path-win' type='text' style='width:600px' readonly="true" /><br/>
+		Linux: <input id='path-linux' type='text' style='width:600px' readonly="true" /><br/>
+		OSX: <input id='path-osx' type='text' style='width:600px' readonly="true" /><br/>
+		<script type='text/javascript' src='jquery.js'></script>
 		<script type='text/javascript' src='path.js'></script>
 	</body>
 </html>
