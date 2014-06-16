@@ -2,7 +2,7 @@
 	"name": "dotjs universal",
 	"manifest_version": 2,
 	"minimum_chrome_version": "23",
-	"version": "1.5.1",
+	"version": "1.6.0",
 	"description": "~/.js",
 	"icons": {
 		"48": "images/icon48.png",
@@ -10,10 +10,10 @@
 	},
 	"options_page": "options.html",
 	"content_scripts": [{
-		"all_frames": true,
+		"all_frames": false,
 		"run_at": "document_end",
 		"matches": ["http://*/*", "https://*/*"],
-		"js": ["jquery.js", "dotjs.js"]
+		"js": ["jquery.js", "lodash.js", "on.js", "dotjs.js"]
 	}],
 	"web_accessible_resources": ["scripts/*.js", "styles/*.css"]
 }

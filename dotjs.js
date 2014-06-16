@@ -1,28 +1,24 @@
-var hostname = location.hostname.replace(/^www\./, '')
+var hostname = location.hostname.replace(/^www\./, '');
 
-$.ajax({
-	url: chrome.extension.getURL('styles/' + hostname + '.css'),
-	dataType: 'text',
-	success: function(data){
-		var stylesheet = document.createElement('style');
-		stylesheet.type = 'text/css';
-		stylesheet.innerHTML = data;
-		document.body.appendChild(stylesheet);
-	}
-})
+var defaults = ''; // library code invoked first
+function updatesDefaultJS(js) { defaults = js; }
 
-$.ajax({
-	url: chrome.extension.getURL('scripts/' + hostname + '.js'),
-	dataType: 'text',
-	success: function(data){
-		eval(data);
-	},
-});
+load('scripts/default.js', updatesDefaultJS);
+load('styles/' + hostname + '.css', userCSS);
+load('scripts/' + hostname + '.js', userJS);
 
-$.ajax({
-	url: chrome.extension.getURL('scripts/default.js'),
-	dataType: 'text',
-	success: function(data){
-		eval(data);
-	},
-});
+function userJS(js) { eval(defaults + js); }
+
+function userCSS(css) {
+  var stylesheet = document.createElement('style');
+  stylesheet.type = 'text/css';
+  stylesheet.innerHTML = css;
+  document.head.appendChild(stylesheet);
+}
+
+function load(url, cb) {
+  var xhr = new XMLHttpRequest();
+  xhr.onload = function(e) { cb(this.responseText); };
+  xhr.open('GET', chrome.extension.getURL(url), true);
+  xhr.send();
+}
