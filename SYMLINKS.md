@@ -11,8 +11,8 @@ A good choice for this directory is `~/.dotjs` on Linux, you can probably come u
 ## Windows
 
 ```bash
-mklink /D "<secure_directory>\scripts" "<scripts_directory>"
-mklink /D "<secure_directory>\styles" "<styles_directory>"
+mklink /D "<scripts_directory>" "<secure_directory>\scripts"
+mklink /D "<styles_directory>" "<secure_directory>\styles"
 ```
 
 ## Linux and OS X
